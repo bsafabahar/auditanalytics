@@ -47,7 +47,8 @@ def attribute_sample_size(size, delta_pct, sigma_pct, sig_level=0.05, power=0.8)
     Calculate attribute sample size for estimating error rates.
     
     Attribute sampling estimates the error rate in the entire transaction 
-    population with specified confidence.
+    population with specified confidence. Uses power analysis based on 
+    effect size calculation.
     
     Parameters
     ----------
@@ -71,14 +72,21 @@ def attribute_sample_size(size, delta_pct, sigma_pct, sig_level=0.05, power=0.8)
     --------
     >>> attribute_sample_size(1000, 0.05, 0.3)
     7
+    
+    Notes
+    -----
+    This is a simplified calculation. For production use, consider using
+    specialized power analysis packages like statsmodels.stats.power.
     """
     delta = delta_pct * size
     sigma = sigma_pct * size
     effect = delta / sigma
     
-    # Using power analysis for one-sample t-test
-    n = stats.norm.ppf(1 - sig_level) + stats.norm.ppf(power)
-    n = (n / effect) ** 2
+    # Using simplified power analysis for one-sample test
+    # For more accurate results, use statsmodels.stats.power
+    z_alpha = stats.norm.ppf(1 - sig_level)
+    z_beta = stats.norm.ppf(power)
+    n = ((z_alpha + z_beta) / effect) ** 2
     
     return int(np.ceil(n))
 
@@ -190,9 +198,19 @@ def benford_analysis(data, digit=1):
     >>> import numpy as np
     >>> data = np.random.exponential(1000, 100)
     >>> results = benford_analysis(data, digit=1)
+    
+    Notes
+    -----
+    This function filters out non-positive values (zeros and negatives) as 
+    Benford's Law only applies to positive values. Users should be aware that
+    zero and negative values in the input data will be excluded from the analysis.
     """
     data = np.array(data)
-    data = data[data > 0]  # Only positive values
+    # Only positive values - Benford's Law applies to positive numbers only
+    data = data[data > 0]
+    
+    if len(data) == 0:
+        raise ValueError("No positive values in data for Benford's Law analysis")
     
     # Extract the specified digit
     data_str = data.astype(str)
