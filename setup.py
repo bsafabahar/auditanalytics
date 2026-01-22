@@ -73,9 +73,4 @@ setup(
     package_data={
         "auditanalytics": ["data/*.csv", "data/*.xlsx"],
     },
-    entry_points={
-        "console_scripts": [
-            "auditanalytics=auditanalytics.cli:main",
-        ],
-    },
 )

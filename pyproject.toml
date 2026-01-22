@@ -57,7 +57,7 @@ Documentation = "https://github.com/bsafabahar/auditanalytics"
 Repository = "https://github.com/bsafabahar/auditanalytics"
 
 [tool.setuptools]
-packages = ["auditanalytics"]
+packages = ["auditanalytics", "auditanalytics.core", "auditanalytics.analytics", "auditanalytics.data", "auditanalytics.utils"]
 
 [tool.black]
 line-length = 88

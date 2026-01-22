@@ -14,7 +14,6 @@ scikit-learn>=1.0.0
 
 # Data handling
 openpyxl>=3.0.0
-xlrd>=2.0.0
 python-dateutil>=2.8.0
 
 # Jupyter notebooks
