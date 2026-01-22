@@ -1,6 +1,29 @@
-## Audit Analytics: Data Science for the Accounting Profession
+# Audit Analytics: Data Science for the Accounting Profession
 
-Uses R and RStudio software to plan, implement, and render an audit opinion that is legally and statistically defensible
+## 🐍 Python Edition Now Available!
+
+**This repository has been converted to a Python package!** The complete functionality is now available in Python with all the power of modern data science libraries.
+
+👉 **[See README_PYTHON.md for Python installation and usage](README_PYTHON.md)**
+
+### Quick Start (Python)
+
+```bash
+# Install the package
+git clone https://github.com/bsafabahar/auditanalytics.git
+cd auditanalytics
+pip install -e .
+
+# Use in Python
+import auditanalytics as aa
+sample_size = aa.core.discovery_sample_size(0.95, 0.05)
+```
+
+---
+
+## Original R Package Information
+
+Originally developed using R and RStudio software to plan, implement, and render an audit opinion that is legally and statistically defensible
 
 ![Audit Analytics](https://images-na.ssl-images-amazon.com/images/I/41SRfppKIyL._SX328_BO1,204,203,200_.jpg)
 
@@ -28,14 +51,37 @@ Using R and RStudio, the book demonstrates how to render an audit opinion that i
 
 ## Datasets
 
-The _auditanalytics_ package contains a collection of data sets used in the book.  R Notebooks which contain the code in Audit Analytics are available below, and use these datasets as well as dependent packages. The _auditanalytics_ package can be installed directly from github with:
+The package contains a collection of data sets used in the book, now located in the `/data` directory. Both R and Python versions can use these datasets.
 
+**Python usage:**
+```python
+import auditanalytics as aa
+data = aa.data.load_data('random_data.csv')
 ```
+
+**R usage (original):**
+```r
 devtools::install_github("westland/auditanalytics")
 ```
-(Note: You may need to install devtools first if it is not already installed.)
 
-## Chapters \& R Notebooks
+## Original R Notebooks and Code
+
+The original R/Quarto code files are preserved in the `R-code files in Quarto/` directory for reference. The Python package provides equivalent functionality with these conversions:
+
+- R functions → Python functions with type hints
+- dplyr → pandas
+- ggplot2 → matplotlib + seaborn
+- Statistical packages → scipy + statsmodels
+
+## Chapters & Notebooks (Python)
+
+**Python Jupyter Notebooks** are available in the `/notebooks` directory:
+- Chapter 2: Metrics and Estimates ([ch2_metrics_estimates.ipynb](notebooks/ch2_metrics_estimates.ipynb))
+- Chapter 4: Sample Sizes for Budgeting ([ch4_sample_sizes.ipynb](notebooks/ch4_sample_sizes.ipynb))
+- More notebooks coming soon...
+
+### Original R Notebooks
+_(Original R code files in .qmd format - kept for reference)_
 _(You can download the R code for each of the "Audit Analytics" chapters by clicking on the chapter link and running the downloaded .Rmd file in R Studio)_
 
 - Preface and Frontmatter
