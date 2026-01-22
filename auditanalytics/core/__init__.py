@@ -17,7 +17,7 @@ from .statistics import (
 
 __all__ = [
     'discovery_sample_size',
-    'attribute_sample_size', 
+    'attribute_sample_size',
     'acceptance_sample_size',
     'compute_summary_stats',
     'foot_and_agree'

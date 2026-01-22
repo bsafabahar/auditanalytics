@@ -6,10 +6,8 @@ data sources commonly used in audit analytics.
 """
 
 import pandas as pd
-import numpy as np
 from pathlib import Path
-from typing import Union, Optional, Dict, Any
-import os
+from typing import Union, Optional
 
 
 def load_csv(filepath: Union[str, Path],
@@ -17,7 +15,7 @@ def load_csv(filepath: Union[str, Path],
              **kwargs) -> pd.DataFrame:
     """
     Load CSV file with audit-friendly defaults.
-    
+
     Parameters
     ----------
     filepath : str or Path
@@ -26,12 +24,12 @@ def load_csv(filepath: Union[str, Path],
         File encoding (default: 'utf-8')
     **kwargs
         Additional arguments passed to pd.read_csv
-    
+
     Returns
     -------
     pd.DataFrame
         Loaded data
-        
+
     Examples
     --------
     >>> df = load_csv('data/transactions.csv')
@@ -39,21 +37,21 @@ def load_csv(filepath: Union[str, Path],
     """
     # Convert to Path object for easier handling
     filepath = Path(filepath)
-    
+
     if not filepath.exists():
         raise FileNotFoundError(f"File not found: {filepath}")
-    
+
     # Default kwargs for audit data
     default_kwargs = {
         'encoding': encoding,
         'low_memory': False,  # Read entire file for accurate type inference
     }
-    
+
     # Merge with user-provided kwargs
     default_kwargs.update(kwargs)
-    
+
     df = pd.read_csv(filepath, **default_kwargs)
-    
+
     return df
 
 
@@ -62,10 +60,10 @@ def load_data(filename: str,
               **kwargs) -> pd.DataFrame:
     """
     Load data file from the package data directory or specified location.
-    
+
     This is a convenience function that looks for data in the package's
     data directory or a user-specified directory.
-    
+
     Parameters
     ----------
     filename : str
@@ -74,12 +72,12 @@ def load_data(filename: str,
         Directory containing data files. If None, looks in package data dir
     **kwargs
         Additional arguments passed to load_csv
-    
+
     Returns
     -------
     pd.DataFrame
         Loaded data
-        
+
     Examples
     --------
     >>> df = load_data('random_data.csv')
@@ -94,11 +92,11 @@ def load_data(filename: str,
             Path(__file__).parent.parent.parent / 'data' / filename,  # Package data
             Path.cwd() / 'data' / filename,  # CWD data directory
         ]
-        
+
         for path in possible_paths:
             if path.exists():
                 return load_csv(path, **kwargs)
-        
+
         raise FileNotFoundError(
             f"Could not find {filename} in any standard data location. "
             f"Tried: {[str(p) for p in possible_paths]}"
@@ -114,7 +112,7 @@ def save_data(df: pd.DataFrame,
               **kwargs) -> None:
     """
     Save DataFrame to CSV file.
-    
+
     Parameters
     ----------
     df : pd.DataFrame
@@ -130,19 +128,19 @@ def save_data(df: pd.DataFrame,
         data_dir = Path('data')
     else:
         data_dir = Path(data_dir)
-    
+
     # Create directory if it doesn't exist
     data_dir.mkdir(parents=True, exist_ok=True)
-    
+
     filepath = data_dir / filename
-    
+
     # Default kwargs
     default_kwargs = {
         'index': False,
         'encoding': 'utf-8',
     }
     default_kwargs.update(kwargs)
-    
+
     df.to_csv(filepath, **default_kwargs)
 
 
@@ -151,7 +149,7 @@ def load_excel(filepath: Union[str, Path],
                **kwargs) -> pd.DataFrame:
     """
     Load Excel file.
-    
+
     Parameters
     ----------
     filepath : str or Path
@@ -160,24 +158,24 @@ def load_excel(filepath: Union[str, Path],
         Sheet name or index (default: 0)
     **kwargs
         Additional arguments passed to pd.read_excel
-    
+
     Returns
     -------
     pd.DataFrame
         Loaded data
     """
     filepath = Path(filepath)
-    
+
     if not filepath.exists():
         raise FileNotFoundError(f"File not found: {filepath}")
-    
+
     return pd.read_excel(filepath, sheet_name=sheet_name, **kwargs)
 
 
 def get_data_path() -> Path:
     """
     Get the path to the package data directory.
-    
+
     Returns
     -------
     Path
@@ -189,11 +187,11 @@ def get_data_path() -> Path:
         Path('../data'),
         Path(__file__).parent.parent.parent / 'data',
     ]
-    
+
     for path in possible_paths:
         if path.exists() and path.is_dir():
             return path.resolve()
-    
+
     # If not found, return default
     return Path('data')
 
@@ -201,21 +199,21 @@ def get_data_path() -> Path:
 def list_available_data() -> list:
     """
     List all available data files in the data directory.
-    
+
     Returns
     -------
     list
         List of available data filenames
     """
     data_dir = get_data_path()
-    
+
     if not data_dir.exists():
         return []
-    
+
     # List all CSV and Excel files
     csv_files = list(data_dir.glob('*.csv'))
     excel_files = list(data_dir.glob('*.xlsx')) + list(data_dir.glob('*.xls'))
-    
+
     all_files = csv_files + excel_files
-    
+
     return [f.name for f in sorted(all_files)]

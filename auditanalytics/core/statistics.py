@@ -11,15 +11,15 @@ from typing import Union, Dict, Any, Optional
 from scipy import stats
 
 
-def foot_and_agree(data: Union[pd.DataFrame, pd.Series], 
+def foot_and_agree(data: Union[pd.DataFrame, pd.Series],
                    column: Optional[str] = None,
                    expected_total: Optional[float] = None) -> Dict[str, Any]:
     """
     Foot (sum) a dataset and optionally agree it to client's records.
-    
+
     In auditing, 'footing' means summing a column of numbers, and 'agreeing'
     means comparing that sum to the client's reported total.
-    
+
     Parameters
     ----------
     data : pd.DataFrame or pd.Series
@@ -28,7 +28,7 @@ def foot_and_agree(data: Union[pd.DataFrame, pd.Series],
         Column name to sum if data is DataFrame
     expected_total : float, optional
         Client's reported total for agreement
-    
+
     Returns
     -------
     dict
@@ -36,7 +36,7 @@ def foot_and_agree(data: Union[pd.DataFrame, pd.Series],
         - 'total': computed total
         - 'agrees': True if total matches expected (if provided)
         - 'difference': difference from expected (if provided)
-        
+
     Examples
     --------
     >>> df = pd.DataFrame({'amount': [100, 200, 300]})
@@ -50,19 +50,19 @@ def foot_and_agree(data: Union[pd.DataFrame, pd.Series],
         values = data[column]
     else:
         values = data
-    
+
     # Compute the total
     total = float(values.sum())
-    
+
     result = {'total': total}
-    
+
     # Check agreement if expected total provided
     if expected_total is not None:
         difference = total - expected_total
         agrees = bool(np.abs(difference) < 1e-10)  # Account for floating point precision
         result['agrees'] = agrees
         result['difference'] = difference
-    
+
     return result
 
 
@@ -71,7 +71,7 @@ def compute_summary_stats(data: pd.DataFrame,
                          describe_type: str = 'pandas') -> Union[pd.DataFrame, Dict]:
     """
     Compute comprehensive summary statistics for audit data.
-    
+
     Parameters
     ----------
     data : pd.DataFrame
@@ -81,12 +81,12 @@ def compute_summary_stats(data: pd.DataFrame,
     describe_type : str, optional
         Type of description: 'pandas', 'extended', or 'all'
         (default: 'pandas')
-    
+
     Returns
     -------
     pd.DataFrame or dict
         Summary statistics
-        
+
     Examples
     --------
     >>> df = pd.DataFrame({'amount': [100, 200, 300], 'type': ['A', 'B', 'A']})
@@ -95,10 +95,10 @@ def compute_summary_stats(data: pd.DataFrame,
     if group_by is not None:
         # Group-wise statistics
         return data.groupby(group_by).describe()
-    
+
     if describe_type == 'pandas':
         return data.describe()
-    
+
     elif describe_type == 'extended':
         # More detailed statistics
         stats_dict = {}
@@ -118,7 +118,7 @@ def compute_summary_stats(data: pd.DataFrame,
                 'sum': col_data.sum(),
             }
         return pd.DataFrame(stats_dict)
-    
+
     elif describe_type == 'all':
         # Comprehensive statistics similar to R's Hmisc::describe
         result = {}
@@ -129,7 +129,7 @@ def compute_summary_stats(data: pd.DataFrame,
                 'missing': col_data.isna().sum(),
                 'unique': col_data.nunique(),
             }
-            
+
             if pd.api.types.is_numeric_dtype(col_data):
                 col_data_clean = col_data.dropna()
                 col_stats.update({
@@ -143,11 +143,11 @@ def compute_summary_stats(data: pd.DataFrame,
                     'q95': col_data_clean.quantile(0.95),
                     'max': col_data_clean.max(),
                 })
-            
+
             result[col] = col_stats
-        
+
         return pd.DataFrame(result).T
-    
+
     else:
         raise ValueError(f"Unknown describe_type: {describe_type}")
 
@@ -156,14 +156,14 @@ def test_normality(data: Union[pd.Series, np.ndarray],
                    method: str = 'shapiro') -> Dict[str, Any]:
     """
     Test data for normality.
-    
+
     Parameters
     ----------
     data : pd.Series or np.ndarray
         Data to test
     method : str, optional
         Test method: 'shapiro', 'ks', or 'anderson' (default: 'shapiro')
-    
+
     Returns
     -------
     dict
@@ -171,7 +171,7 @@ def test_normality(data: Union[pd.Series, np.ndarray],
     """
     if isinstance(data, pd.Series):
         data = data.dropna().values
-    
+
     if method == 'shapiro':
         stat, p_value = stats.shapiro(data)
         return {
@@ -180,7 +180,7 @@ def test_normality(data: Union[pd.Series, np.ndarray],
             'p_value': p_value,
             'is_normal': bool(p_value > 0.05)
         }
-    
+
     elif method == 'ks':
         stat, p_value = stats.kstest(data, 'norm')
         return {
@@ -189,7 +189,7 @@ def test_normality(data: Union[pd.Series, np.ndarray],
             'p_value': p_value,
             'is_normal': bool(p_value > 0.05)
         }
-    
+
     elif method == 'anderson':
         result = stats.anderson(data)
         return {
@@ -198,7 +198,7 @@ def test_normality(data: Union[pd.Series, np.ndarray],
             'critical_values': result.critical_values,
             'significance_levels': result.significance_level
         }
-    
+
     else:
         raise ValueError(f"Unknown method: {method}")
 
@@ -208,17 +208,17 @@ def detect_outliers(data: Union[pd.Series, np.ndarray],
                    threshold: float = 1.5) -> Dict[str, Any]:
     """
     Detect outliers in data.
-    
+
     Parameters
     ----------
     data : pd.Series or np.ndarray
         Data to analyze
     method : str, optional
-        Detection method: 'iqr', 'zscore', or 'modified_zscore' 
+        Detection method: 'iqr', 'zscore', or 'modified_zscore'
         (default: 'iqr')
     threshold : float, optional
         Threshold for outlier detection (default: 1.5 for IQR)
-    
+
     Returns
     -------
     dict
@@ -230,7 +230,7 @@ def detect_outliers(data: Union[pd.Series, np.ndarray],
     else:
         values = data[~np.isnan(data)]
         index = np.arange(len(values))
-    
+
     if method == 'iqr':
         q1 = np.percentile(values, 25)
         q3 = np.percentile(values, 75)
@@ -238,20 +238,20 @@ def detect_outliers(data: Union[pd.Series, np.ndarray],
         lower_bound = q1 - threshold * iqr
         upper_bound = q3 + threshold * iqr
         outliers_mask = (values < lower_bound) | (values > upper_bound)
-    
+
     elif method == 'zscore':
         z_scores = np.abs(stats.zscore(values))
         outliers_mask = z_scores > threshold
-    
+
     elif method == 'modified_zscore':
         median = np.median(values)
         mad = np.median(np.abs(values - median))
         modified_z_scores = 0.6745 * (values - median) / mad
         outliers_mask = np.abs(modified_z_scores) > threshold
-    
+
     else:
         raise ValueError(f"Unknown method: {method}")
-    
+
     return {
         'method': method,
         'n_outliers': outliers_mask.sum(),

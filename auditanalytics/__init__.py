@@ -2,7 +2,7 @@
 Audit Analytics: Data Science for the Accounting Profession
 Python Edition
 
-This package provides tools and utilities for audit analytics, 
+This package provides tools and utilities for audit analytics,
 statistical sampling, risk assessment, and financial data analysis.
 
 Original R package by J. Christopher Westland
