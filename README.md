@@ -1,6 +1,6 @@
 ## Audit Analytics: Data Science for the Accounting Profession (Python Edition)
 
-Python implementation of data science tools to plan, implement, and render an audit opinion that is legally and statistically defensible. Originally based on the R implementation from the book "Audit Analytics" by J. Christopher Westland
+Python implementation of data science tools to plan, implement, and render an audit opinion that is legally and statistically defensible. Based on the book "Audit Analytics" by J. Christopher Westland
 
 ![Audit Analytics](https://images-na.ssl-images-amazon.com/images/I/41SRfppKIyL._SX328_BO1,204,203,200_.jpg)
 
@@ -15,7 +15,7 @@ Information technology plays a pivotal role in financial control and audit: most
 
 Audit effectiveness has declined over the past two decades as auditor skillsets have failed to keep up with advances in information technology. Information and communication technology lie at the core of commerce today and are integrated in business processes around the world. This book is designed to meet the increasing need of audit professionals to understand information technology and the controls required to manage it. The material included focuses on the requirements for annual Securities and Exchange Commission audits (10-K) for listed corporations. These represent the benchmark auditing procedures for specialized audits, such as internal, governmental, and attestation audits.
 
-Using R and RStudio, the book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
+The book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
 
 **This Python package** provides a complete Python implementation of the audit analytics methods from the book. It uses modern Python data science libraries (pandas, numpy, scikit-learn, statsmodels, matplotlib) to perform the same analyses and procedures described in the original book.
 
@@ -98,7 +98,7 @@ _(You can find the converted Jupyter notebooks for each chapter in the `notebook
 - [Inventory Audit Procedures](notebooks/inventory_p327.ipynb)
 - [Tests of Supporting Evidence](notebooks/supporting_evidence_p275.ipynb)
 
-**Note:** The original R code files are preserved in the `R-code files in Quarto/` directory for reference.
+
 
 
 
@@ -117,7 +117,7 @@ Audits are independent examinations of the records of an organization to ascerta
 
 #### Chapter 2: Foundations of Audit Analytics
 
-Broad application of statistical and data analytic tools are essential for the cost-effective completion of audits.  Fortunately R has become the go to language for analytics, and offers many features that reduce the cost of data acquisition, preparation, exploration and summarization.  It provides a scientific basis for audit decisions underlying the auditor's opinion.  Effective legal defense of audit methods is predicated on data analytics and statistical methods.  This chapter summarizes the subset of R capabilities that are germane to an audit.
+Broad application of statistical and data analytic tools are essential for the cost-effective completion of audits.  Modern data science tools and libraries provide powerful capabilities for data acquisition, preparation, exploration and summarization.  They provide a scientific basis for audit decisions underlying the auditor's opinion.  Effective legal defense of audit methods is predicated on data analytics and statistical methods.  This chapter summarizes the data analytics capabilities that are germane to an audit.
 
 #### Chapter 3: Analysis of Accounting Transactions
 
@@ -129,7 +129,7 @@ Risk assessment, planning and budgeting of audits are essential precursors to th
 
 #### Chapter 5: Analytical Review -- Technical Analysis
 
-Analytical procedures are evaluations of financial information made by a study of plausible relationships between both financial and non-financial data. They are used in all stages of the audit including planning, substantive testing and final review stage. This chapter surveys a range of R packages that ease technical analysis and data collection tasks in analytical review.
+Analytical procedures are evaluations of financial information made by a study of plausible relationships between both financial and non-financial data. They are used in all stages of the audit including planning, substantive testing and final review stage. This chapter surveys a range of Python libraries and tools that ease technical analysis and data collection tasks in analytical review.
 
 
 #### Chapter 6: Analytical Review -- Intelligence Scanning
