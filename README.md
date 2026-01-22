@@ -1,6 +1,6 @@
-## Audit Analytics: Data Science for the Accounting Profession
+## Audit Analytics: Data Science for the Accounting Profession (Python Edition)
 
-Uses R and RStudio software to plan, implement, and render an audit opinion that is legally and statistically defensible
+Python implementation of data science tools to plan, implement, and render an audit opinion that is legally and statistically defensible. Originally based on the R implementation from the book "Audit Analytics" by J. Christopher Westland
 
 ![Audit Analytics](https://images-na.ssl-images-amazon.com/images/I/41SRfppKIyL._SX328_BO1,204,203,200_.jpg)
 
@@ -17,6 +17,8 @@ Audit effectiveness has declined over the past two decades as auditor skillsets 
 
 Using R and RStudio, the book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
 
+**This Python package** provides a complete Python implementation of the audit analytics methods from the book. It uses modern Python data science libraries (pandas, numpy, scikit-learn, statsmodels, matplotlib) to perform the same analyses and procedures described in the original book.
+
 
 ### Where to buy?
 
@@ -26,33 +28,77 @@ Using R and RStudio, the book demonstrates how to render an audit opinion that i
 
 [Waterstones](https://www.waterstones.com/book/audit-analytics/j-christopher-westland//9783030490904)
 
-## Datasets
+## Installation
 
-The _auditanalytics_ package contains a collection of data sets used in the book.  R Notebooks which contain the code in Audit Analytics are available below, and use these datasets as well as dependent packages. The _auditanalytics_ package can be installed directly from github with:
+The _auditanalytics_ Python package contains a collection of data sets used in the book. Jupyter Notebooks which contain the Python code for Audit Analytics are available in the `notebooks/` directory.
 
+To install the package:
+
+```bash
+# Clone the repository
+git clone https://github.com/bsafabahar/auditanalytics.git
+cd auditanalytics
+
+# Create a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install the package and dependencies
+pip install -e .
+
+# Or install from requirements.txt
+pip install -r requirements.txt
 ```
-devtools::install_github("westland/auditanalytics")
-```
-(Note: You may need to install devtools first if it is not already installed.)
 
-## Chapters \& R Notebooks
-_(You can download the R code for each of the "Audit Analytics" chapters by clicking on the chapter link and running the downloaded .Rmd file in R Studio)_
+## Usage
+
+After installation, you can use the package in your Python code:
+
+```python
+import pandas as pd
+from auditanalytics import utils
+
+# Load data from the package
+data = pd.read_csv(utils.get_data_path('ch_2_yahoo_fin.csv'))
+
+# Or start with the Jupyter notebooks
+# Open notebooks/sample_sizes_p103.ipynb in Jupyter
+```
+
+## Chapters & Jupyter Notebooks
+_(You can find the converted Jupyter notebooks for each chapter in the `notebooks/` directory. These provide Python implementations of the audit analytics procedures described in the book.)_
 
 - Preface and Frontmatter
 - Foreword by Erik Brynjolfsson
-1. [Fundamentals of Auditing Financial Statements](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_1_aud_fs.Rmd)
-1. [Foundations of Audit Analytics](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_2_statistics_analytics.Rmd)
-1. [Analysis of Accounting Transactions](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_3_acct_transactions.Rmd)
-1. [Risk Assessment and Planning](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_4_planning.Rmd)
-1. [Analytical Review: Technical Analysis](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_5_analytical_review_technical.Rmd)
-1. [Analytical Review: Intelligence Scanning](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_6_analytical_review_intell.Rmd)
-1. [Design of Audit Programs](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_7_design_of_audit.Rmd)
-1. [Interim Compliance Tests](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_8_interim_compliance.Rmd)
-1. [Substantive Tests](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_9_substantive.Rmd)
-1. [Sarbanes-Oxley Engagements](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_10_SOX.Rmd)
-1. [Blockchains, Cybercrime and Forensics](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_11_block_fraud.Rmd)
-1. [Special Engagements: Forecasts and Valuation](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_12_special.Rmd)
-1. [Simulated Transactions for Auditing Service Organizations](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_13_simulation.Rmd)
+1. [Fundamentals of Auditing Financial Statements](notebooks/ch_1_aud_fs.ipynb)
+1. [Foundations of Audit Analytics - Statistics](notebooks/metrics_estimates_p67.ipynb)
+1. [Analysis of Accounting Transactions](notebooks/ch_3_acct_transactions.ipynb)
+1. [Risk Assessment and Planning](notebooks/ram_dashboard_p98.ipynb)
+1. [Analytical Review: Technical Analysis](notebooks/tech_analysis_p131.ipynb)
+1. [Analytical Review: Intelligence Scanning](notebooks/scan_curated_p159.ipynb)
+1. [Design of Audit Programs - Sample Sizes](notebooks/sample_sizes_p103.ipynb)
+1. [Interim Compliance Tests](notebooks/ML_compliance_p235.ipynb)
+1. [Substantive Tests - Trial Balance](notebooks/trial_balance_p272.ipynb)
+1. [Substantive Tests - Accounts Receivable](notebooks/AR_p272.ipynb)
+1. [Sarbanes-Oxley Engagements](notebooks/ML_SOX_p354.ipynb)
+1. [Blockchains, Cybercrime and Forensics](notebooks/blockchain_p389.ipynb)
+1. [Special Engagements: Forecasts and Valuation](notebooks/ch_12_special.ipynb)
+1. [Simulated Transactions for Auditing Service Organizations](notebooks/simulation_p436.ipynb)
+
+### Additional Notebooks
+
+- [Accessing EDGAR Database](notebooks/accessing_edgar_p87.ipynb)
+- [Advanced EDGAR Analysis](notebooks/accessing_edgar_p117.ipynb)
+- [Sentiment Analysis](notebooks/sent_analysis_p145.ipynb)
+- [Web Scraping for Audit Intelligence](notebooks/web_scraping_p166.ipynb)
+- [US Census Data Analysis](notebooks/us_census_p127.ipynb)
+- [AR Confirmation Procedures](notebooks/AR_confirmation_p285.ipynb)
+- [Uncollectable Accounts Analysis](notebooks/uncollectables_p287.ipynb)
+- [Stratified and Monetary Unit Sampling](notebooks/stratified_MUS_p315.ipynb)
+- [Inventory Audit Procedures](notebooks/inventory_p327.ipynb)
+- [Tests of Supporting Evidence](notebooks/supporting_evidence_p275.ipynb)
+
+**Note:** The original R code files are preserved in the `R-code files in Quarto/` directory for reference.
 
 
 
