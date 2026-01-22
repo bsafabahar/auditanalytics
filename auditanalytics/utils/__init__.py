@@ -1,3 +1,8 @@
 """Utility functions for audit analytics"""
 
-__all__ = []
+from .sampling import *
+
+__all__ = ['discovery_sample_size', 'attribute_sample_size', 
+           'monetary_unit_sample_size', 'stratified_sample_allocation',
+           'benford_analysis']
+
