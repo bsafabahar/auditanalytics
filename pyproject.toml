@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auditanalytics"
+version = "0.1.0"
+description = "Python implementation of Audit Analytics - Data Science for the Accounting Profession"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "GPL-3.0"}
+authors = [
+    {name = "J. Christopher Westland", email = "westland@uic.edu"}
+]
+keywords = ["audit", "analytics", "accounting", "finance", "data-science"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
+
+[project.urls]
+Homepage = "https://github.com/bsafabahar/auditanalytics"
+Documentation = "https://github.com/bsafabahar/auditanalytics"
+Repository = "https://github.com/bsafabahar/auditanalytics"
