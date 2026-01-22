@@ -59,7 +59,7 @@ def foot_and_agree(data: Union[pd.DataFrame, pd.Series],
     # Check agreement if expected total provided
     if expected_total is not None:
         difference = total - expected_total
-        agrees = np.abs(difference) < 1e-10  # Account for floating point precision
+        agrees = bool(np.abs(difference) < 1e-10)  # Account for floating point precision
         result['agrees'] = agrees
         result['difference'] = difference
     
@@ -178,7 +178,7 @@ def test_normality(data: Union[pd.Series, np.ndarray],
             'method': 'Shapiro-Wilk',
             'statistic': stat,
             'p_value': p_value,
-            'is_normal': p_value > 0.05
+            'is_normal': bool(p_value > 0.05)
         }
     
     elif method == 'ks':
@@ -187,7 +187,7 @@ def test_normality(data: Union[pd.Series, np.ndarray],
             'method': 'Kolmogorov-Smirnov',
             'statistic': stat,
             'p_value': p_value,
-            'is_normal': p_value > 0.05
+            'is_normal': bool(p_value > 0.05)
         }
     
     elif method == 'anderson':

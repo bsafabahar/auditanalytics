@@ -39,7 +39,17 @@ def discovery_sample_size(confidence: float = 0.95,
     Notes
     -----
     Formula: n = log(1 - confidence) / log(1 - intolerable_rate)
+    
+    Raises
+    ------
+    ValueError
+        If intolerable_rate is 0 or 1, or if confidence is not in (0, 1)
     """
+    if intolerable_rate <= 0 or intolerable_rate >= 1:
+        raise ValueError("intolerable_rate must be between 0 and 1 (exclusive)")
+    if confidence <= 0 or confidence >= 1:
+        raise ValueError("confidence must be between 0 and 1 (exclusive)")
+    
     n = np.log(1 - confidence) / np.log(1 - intolerable_rate)
     return int(np.ceil(n))
 

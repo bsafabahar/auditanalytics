@@ -1,0 +1,10 @@
+include README.md
+include README_PYTHON.md
+include LICENSE.md
+include requirements.txt
+include pyproject.toml
+recursive-include data *.csv *.xlsx *.xls
+recursive-include notebooks *.ipynb
+recursive-include auditanalytics *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

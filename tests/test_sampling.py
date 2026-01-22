@@ -108,7 +108,7 @@ class TestEdgeCases:
     
     def test_zero_intolerable_rate_raises(self):
         """Test that zero intolerable rate is handled."""
-        with pytest.raises((ValueError, ZeroDivisionError)):
+        with pytest.raises(ValueError):
             discovery_sample_size(confidence=0.95, intolerable_rate=0.0)
     
     def test_confidence_boundary(self):
