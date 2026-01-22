@@ -12,7 +12,9 @@ from .sampling import (
 )
 from .statistics import (
     compute_summary_stats,
-    foot_and_agree
+    foot_and_agree,
+    test_normality,
+    detect_outliers
 )
 
 __all__ = [
@@ -20,5 +22,7 @@ __all__ = [
     'attribute_sample_size',
     'acceptance_sample_size',
     'compute_summary_stats',
-    'foot_and_agree'
+    'foot_and_agree',
+    'test_normality',
+    'detect_outliers'
 ]
