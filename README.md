@@ -1,6 +1,6 @@
 ## Audit Analytics: Data Science for the Accounting Profession
 
-Uses R and RStudio software to plan, implement, and render an audit opinion that is legally and statistically defensible
+Python implementation using pandas, numpy, scipy, and scikit-learn to plan, implement, and render an audit opinion that is legally and statistically defensible
 
 ![Audit Analytics](https://images-na.ssl-images-amazon.com/images/I/41SRfppKIyL._SX328_BO1,204,203,200_.jpg)
 
@@ -15,7 +15,7 @@ Information technology plays a pivotal role in financial control and audit: most
 
 Audit effectiveness has declined over the past two decades as auditor skillsets have failed to keep up with advances in information technology. Information and communication technology lie at the core of commerce today and are integrated in business processes around the world. This book is designed to meet the increasing need of audit professionals to understand information technology and the controls required to manage it. The material included focuses on the requirements for annual Securities and Exchange Commission audits (10-K) for listed corporations. These represent the benchmark auditing procedures for specialized audits, such as internal, governmental, and attestation audits.
 
-Using R and RStudio, the book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
+Originally published with R examples, this Python implementation demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
 
 
 ### Where to buy?
@@ -26,33 +26,70 @@ Using R and RStudio, the book demonstrates how to render an audit opinion that i
 
 [Waterstones](https://www.waterstones.com/book/audit-analytics/j-christopher-westland//9783030490904)
 
-## Datasets
+## Installation
 
-The _auditanalytics_ package contains a collection of data sets used in the book.  R Notebooks which contain the code in Audit Analytics are available below, and use these datasets as well as dependent packages. The _auditanalytics_ package can be installed directly from github with:
+The _auditanalytics_ package contains a collection of data sets used in the book. Jupyter Notebooks which contain the Python code for Audit Analytics are available in the `auditanalytics/notebooks/` directory.
 
+### Install from source
+
+```bash
+# Clone the repository
+git clone https://github.com/bsafabahar/auditanalytics.git
+cd auditanalytics
+
+# Install the package
+pip install -e .
 ```
-devtools::install_github("westland/auditanalytics")
-```
-(Note: You may need to install devtools first if it is not already installed.)
 
-## Chapters \& R Notebooks
-_(You can download the R code for each of the "Audit Analytics" chapters by clicking on the chapter link and running the downloaded .Rmd file in R Studio)_
+### Requirements
+
+- Python >= 3.8
+- pandas >= 1.3.0
+- numpy >= 1.20.0
+- scipy >= 1.7.0
+- statsmodels >= 0.13.0
+- matplotlib >= 3.4.0
+- seaborn >= 0.11.0
+- plotly >= 5.0.0
+- scikit-learn >= 1.0.0
+- jupyter >= 1.0.0
+
+## Quick Start
+
+```python
+import auditanalytics as aa
+import pandas as pd
+
+# Load a dataset
+enrollment = aa.load_dataset('ch1_enrollment')
+print(enrollment.head())
+
+# List all available datasets
+from auditanalytics.data import list_datasets
+print(list_datasets())
+
+# Perform basic audit statistics
+print(enrollment.describe())
+```
+
+## Chapters & Jupyter Notebooks
+_(Jupyter Notebooks for each chapter are available in the `auditanalytics/notebooks/` directory)_
 
 - Preface and Frontmatter
 - Foreword by Erik Brynjolfsson
-1. [Fundamentals of Auditing Financial Statements](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_1_aud_fs.Rmd)
-1. [Foundations of Audit Analytics](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_2_statistics_analytics.Rmd)
-1. [Analysis of Accounting Transactions](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_3_acct_transactions.Rmd)
-1. [Risk Assessment and Planning](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_4_planning.Rmd)
-1. [Analytical Review: Technical Analysis](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_5_analytical_review_technical.Rmd)
-1. [Analytical Review: Intelligence Scanning](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_6_analytical_review_intell.Rmd)
-1. [Design of Audit Programs](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_7_design_of_audit.Rmd)
-1. [Interim Compliance Tests](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_8_interim_compliance.Rmd)
-1. [Substantive Tests](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_9_substantive.Rmd)
-1. [Sarbanes-Oxley Engagements](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_10_SOX.Rmd)
-1. [Blockchains, Cybercrime and Forensics](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_11_block_fraud.Rmd)
-1. [Special Engagements: Forecasts and Valuation](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_12_special.Rmd)
-1. [Simulated Transactions for Auditing Service Organizations](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_13_simulation.Rmd)
+1. Fundamentals of Auditing Financial Statements - `ch_1_aud_fs.ipynb`
+1. Foundations of Audit Analytics - `ch_2_statistics_analytics.ipynb`
+1. Analysis of Accounting Transactions - `ch_3_acct_transactions.ipynb`
+1. Risk Assessment and Planning - `ch_4_planning.ipynb`
+1. Analytical Review: Technical Analysis - `ch_5_analytical_review_technical.ipynb`
+1. Analytical Review: Intelligence Scanning - `ch_6_analytical_review_intell.ipynb`
+1. Design of Audit Programs - `ch_7_design_of_audit.ipynb`
+1. Interim Compliance Tests - `ch_8_interim_compliance.ipynb`
+1. Substantive Tests - `ch_9_substantive.ipynb`
+1. Sarbanes-Oxley Engagements - `ch_10_SOX.ipynb`
+1. Blockchains, Cybercrime and Forensics - `ch_11_block_fraud.ipynb`
+1. Special Engagements: Forecasts and Valuation - `ch_12_special.ipynb`
+1. Simulated Transactions for Auditing Service Organizations - `ch_13_simulation.ipynb`
 
 
 
