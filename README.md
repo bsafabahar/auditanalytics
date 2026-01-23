@@ -38,7 +38,9 @@ Information technology plays a pivotal role in financial control and audit: most
 
 Audit effectiveness has declined over the past two decades as auditor skillsets have failed to keep up with advances in information technology. Information and communication technology lie at the core of commerce today and are integrated in business processes around the world. This book is designed to meet the increasing need of audit professionals to understand information technology and the controls required to manage it. The material included focuses on the requirements for annual Securities and Exchange Commission audits (10-K) for listed corporations. These represent the benchmark auditing procedures for specialized audits, such as internal, governmental, and attestation audits.
 
-Using R and RStudio, the book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
+The book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
+
+**This Python package** provides a complete Python implementation of the audit analytics methods from the book. It uses modern Python data science libraries (pandas, numpy, scikit-learn, statsmodels, matplotlib) to perform the same analyses and procedures described in the original book.
 
 
 ### Where to buy?
@@ -49,7 +51,16 @@ Using R and RStudio, the book demonstrates how to render an audit opinion that i
 
 [Waterstones](https://www.waterstones.com/book/audit-analytics/j-christopher-westland//9783030490904)
 
-## Datasets
+## Installation
+
+The _auditanalytics_ Python package contains a collection of data sets used in the book. Jupyter Notebooks which contain the Python code for Audit Analytics are available in the `notebooks/` directory.
+
+To install the package:
+
+```bash
+# Clone the repository
+git clone https://github.com/bsafabahar/auditanalytics.git
+cd auditanalytics
 
 The package contains a collection of data sets used in the book, now located in the `/data` directory. Both R and Python versions can use these datasets.
 
@@ -86,19 +97,35 @@ _(You can download the R code for each of the "Audit Analytics" chapters by clic
 
 - Preface and Frontmatter
 - Foreword by Erik Brynjolfsson
-1. [Fundamentals of Auditing Financial Statements](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_1_aud_fs.Rmd)
-1. [Foundations of Audit Analytics](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_2_statistics_analytics.Rmd)
-1. [Analysis of Accounting Transactions](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_3_acct_transactions.Rmd)
-1. [Risk Assessment and Planning](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_4_planning.Rmd)
-1. [Analytical Review: Technical Analysis](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_5_analytical_review_technical.Rmd)
-1. [Analytical Review: Intelligence Scanning](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_6_analytical_review_intell.Rmd)
-1. [Design of Audit Programs](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_7_design_of_audit.Rmd)
-1. [Interim Compliance Tests](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_8_interim_compliance.Rmd)
-1. [Substantive Tests](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_9_substantive.Rmd)
-1. [Sarbanes-Oxley Engagements](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_10_SOX.Rmd)
-1. [Blockchains, Cybercrime and Forensics](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_11_block_fraud.Rmd)
-1. [Special Engagements: Forecasts and Valuation](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_12_special.Rmd)
-1. [Simulated Transactions for Auditing Service Organizations](https://github.com/westland/auditanalytics/blob/main/Notebooks/ch_13_simulation.Rmd)
+1. [Fundamentals of Auditing Financial Statements](notebooks/ch_1_aud_fs.ipynb)
+1. [Foundations of Audit Analytics - Statistics](notebooks/metrics_estimates_p67.ipynb)
+1. [Analysis of Accounting Transactions](notebooks/ch_3_acct_transactions.ipynb)
+1. [Risk Assessment and Planning](notebooks/ram_dashboard_p98.ipynb)
+1. [Analytical Review: Technical Analysis](notebooks/tech_analysis_p131.ipynb)
+1. [Analytical Review: Intelligence Scanning](notebooks/scan_curated_p159.ipynb)
+1. [Design of Audit Programs - Sample Sizes](notebooks/sample_sizes_p103.ipynb)
+1. [Interim Compliance Tests](notebooks/ML_compliance_p235.ipynb)
+1. [Substantive Tests - Trial Balance](notebooks/trial_balance_p272.ipynb)
+1. [Substantive Tests - Accounts Receivable](notebooks/AR_p272.ipynb)
+1. [Sarbanes-Oxley Engagements](notebooks/ML_SOX_p354.ipynb)
+1. [Blockchains, Cybercrime and Forensics](notebooks/blockchain_p389.ipynb)
+1. [Special Engagements: Forecasts and Valuation](notebooks/ch_12_special.ipynb)
+1. [Simulated Transactions for Auditing Service Organizations](notebooks/simulation_p436.ipynb)
+
+### Additional Notebooks
+
+- [Accessing EDGAR Database](notebooks/accessing_edgar_p87.ipynb)
+- [Advanced EDGAR Analysis](notebooks/accessing_edgar_p117.ipynb)
+- [Sentiment Analysis](notebooks/sent_analysis_p145.ipynb)
+- [Web Scraping for Audit Intelligence](notebooks/web_scraping_p166.ipynb)
+- [US Census Data Analysis](notebooks/us_census_p127.ipynb)
+- [AR Confirmation Procedures](notebooks/AR_confirmation_p285.ipynb)
+- [Uncollectable Accounts Analysis](notebooks/uncollectables_p287.ipynb)
+- [Stratified and Monetary Unit Sampling](notebooks/stratified_MUS_p315.ipynb)
+- [Inventory Audit Procedures](notebooks/inventory_p327.ipynb)
+- [Tests of Supporting Evidence](notebooks/supporting_evidence_p275.ipynb)
+
+
 
 
 
@@ -117,7 +144,7 @@ Audits are independent examinations of the records of an organization to ascerta
 
 #### Chapter 2: Foundations of Audit Analytics
 
-Broad application of statistical and data analytic tools are essential for the cost-effective completion of audits.  Fortunately R has become the go to language for analytics, and offers many features that reduce the cost of data acquisition, preparation, exploration and summarization.  It provides a scientific basis for audit decisions underlying the auditor's opinion.  Effective legal defense of audit methods is predicated on data analytics and statistical methods.  This chapter summarizes the subset of R capabilities that are germane to an audit.
+Broad application of statistical and data analytic tools are essential for the cost-effective completion of audits.  Modern data science tools and libraries provide powerful capabilities for data acquisition, preparation, exploration and summarization.  They provide a scientific basis for audit decisions underlying the auditor's opinion.  Effective legal defense of audit methods is predicated on data analytics and statistical methods.  This chapter summarizes the data analytics capabilities that are germane to an audit.
 
 #### Chapter 3: Analysis of Accounting Transactions
 
@@ -129,7 +156,7 @@ Risk assessment, planning and budgeting of audits are essential precursors to th
 
 #### Chapter 5: Analytical Review -- Technical Analysis
 
-Analytical procedures are evaluations of financial information made by a study of plausible relationships between both financial and non-financial data. They are used in all stages of the audit including planning, substantive testing and final review stage. This chapter surveys a range of R packages that ease technical analysis and data collection tasks in analytical review.
+Analytical procedures are evaluations of financial information made by a study of plausible relationships between both financial and non-financial data. They are used in all stages of the audit including planning, substantive testing and final review stage. This chapter surveys a range of Python libraries and tools that ease technical analysis and data collection tasks in analytical review.
 
 
 #### Chapter 6: Analytical Review -- Intelligence Scanning
