@@ -1,6 +1,6 @@
 ## Audit Analytics: Data Science for the Accounting Profession (Python Edition)
 
-Python implementation of data science tools to plan, implement, and render an audit opinion that is legally and statistically defensible. Based on the book "Audit Analytics" by J. Christopher Westland
+Python implementation using pandas, numpy, scipy, and scikit-learn to plan, implement, and render an audit opinion that is legally and statistically defensible
 
 ![Audit Analytics](https://images-na.ssl-images-amazon.com/images/I/41SRfppKIyL._SX328_BO1,204,203,200_.jpg)
 
@@ -15,9 +15,7 @@ Information technology plays a pivotal role in financial control and audit: most
 
 Audit effectiveness has declined over the past two decades as auditor skillsets have failed to keep up with advances in information technology. Information and communication technology lie at the core of commerce today and are integrated in business processes around the world. This book is designed to meet the increasing need of audit professionals to understand information technology and the controls required to manage it. The material included focuses on the requirements for annual Securities and Exchange Commission audits (10-K) for listed corporations. These represent the benchmark auditing procedures for specialized audits, such as internal, governmental, and attestation audits.
 
-The book demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
-
-**This Python package** provides a complete Python implementation of the audit analytics methods from the book. It uses modern Python data science libraries (pandas, numpy, scikit-learn, statsmodels, matplotlib) to perform the same analyses and procedures described in the original book.
+Originally published with R examples, this Python implementation demonstrates how to render an audit opinion that is legally and statistically defensible; analyze, extract, and manipulate accounting data; build a risk assessment matrix to inform the conduct of a cost-effective audit program; and more.
 
 
 ### Where to buy?
@@ -30,75 +28,68 @@ The book demonstrates how to render an audit opinion that is legally and statist
 
 ## Installation
 
-The _auditanalytics_ Python package contains a collection of data sets used in the book. Jupyter Notebooks which contain the Python code for Audit Analytics are available in the `notebooks/` directory.
+The _auditanalytics_ package contains a collection of data sets used in the book. Jupyter Notebooks which contain the Python code for Audit Analytics are available in the `auditanalytics/notebooks/` directory.
 
-To install the package:
+### Install from source
 
 ```bash
 # Clone the repository
 git clone https://github.com/bsafabahar/auditanalytics.git
 cd auditanalytics
 
-# Create a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install the package and dependencies
+# Install the package
 pip install -e .
-
-# Or install from requirements.txt
-pip install -r requirements.txt
 ```
 
-## Usage
+### Requirements
 
-After installation, you can use the package in your Python code:
+- Python >= 3.8
+- pandas >= 1.3.0
+- numpy >= 1.20.0
+- scipy >= 1.7.0
+- statsmodels >= 0.13.0
+- matplotlib >= 3.4.0
+- seaborn >= 0.11.0
+- plotly >= 5.0.0
+- scikit-learn >= 1.0.0
+- jupyter >= 1.0.0
+
+## Quick Start
 
 ```python
+import auditanalytics as aa
 import pandas as pd
-from auditanalytics import utils
 
-# Load data from the package
-data = pd.read_csv(utils.get_data_path('ch_2_yahoo_fin.csv'))
+# Load a dataset
+enrollment = aa.load_dataset('ch1_enrollment')
+print(enrollment.head())
 
-# Or start with the Jupyter notebooks
-# Open notebooks/sample_sizes_p103.ipynb in Jupyter
+# List all available datasets
+from auditanalytics.data import list_datasets
+print(list_datasets())
+
+# Perform basic audit statistics
+print(enrollment.describe())
 ```
 
 ## Chapters & Jupyter Notebooks
-_(You can find the converted Jupyter notebooks for each chapter in the `notebooks/` directory. These provide Python implementations of the audit analytics procedures described in the book.)_
+_(Jupyter Notebooks for each chapter are available in the `auditanalytics/notebooks/` directory)_
 
 - Preface and Frontmatter
 - Foreword by Erik Brynjolfsson
-1. [Fundamentals of Auditing Financial Statements](notebooks/ch_1_aud_fs.ipynb)
-1. [Foundations of Audit Analytics - Statistics](notebooks/metrics_estimates_p67.ipynb)
-1. [Analysis of Accounting Transactions](notebooks/ch_3_acct_transactions.ipynb)
-1. [Risk Assessment and Planning](notebooks/ram_dashboard_p98.ipynb)
-1. [Analytical Review: Technical Analysis](notebooks/tech_analysis_p131.ipynb)
-1. [Analytical Review: Intelligence Scanning](notebooks/scan_curated_p159.ipynb)
-1. [Design of Audit Programs - Sample Sizes](notebooks/sample_sizes_p103.ipynb)
-1. [Interim Compliance Tests](notebooks/ML_compliance_p235.ipynb)
-1. [Substantive Tests - Trial Balance](notebooks/trial_balance_p272.ipynb)
-1. [Substantive Tests - Accounts Receivable](notebooks/AR_p272.ipynb)
-1. [Sarbanes-Oxley Engagements](notebooks/ML_SOX_p354.ipynb)
-1. [Blockchains, Cybercrime and Forensics](notebooks/blockchain_p389.ipynb)
-1. [Special Engagements: Forecasts and Valuation](notebooks/ch_12_special.ipynb)
-1. [Simulated Transactions for Auditing Service Organizations](notebooks/simulation_p436.ipynb)
-
-### Additional Notebooks
-
-- [Accessing EDGAR Database](notebooks/accessing_edgar_p87.ipynb)
-- [Advanced EDGAR Analysis](notebooks/accessing_edgar_p117.ipynb)
-- [Sentiment Analysis](notebooks/sent_analysis_p145.ipynb)
-- [Web Scraping for Audit Intelligence](notebooks/web_scraping_p166.ipynb)
-- [US Census Data Analysis](notebooks/us_census_p127.ipynb)
-- [AR Confirmation Procedures](notebooks/AR_confirmation_p285.ipynb)
-- [Uncollectable Accounts Analysis](notebooks/uncollectables_p287.ipynb)
-- [Stratified and Monetary Unit Sampling](notebooks/stratified_MUS_p315.ipynb)
-- [Inventory Audit Procedures](notebooks/inventory_p327.ipynb)
-- [Tests of Supporting Evidence](notebooks/supporting_evidence_p275.ipynb)
-
-
+1. Fundamentals of Auditing Financial Statements - `ch_1_aud_fs.ipynb`
+1. Foundations of Audit Analytics - `ch_2_statistics_analytics.ipynb`
+1. Analysis of Accounting Transactions - `ch_3_acct_transactions.ipynb`
+1. Risk Assessment and Planning - `ch_4_planning.ipynb`
+1. Analytical Review: Technical Analysis - `ch_5_analytical_review_technical.ipynb`
+1. Analytical Review: Intelligence Scanning - `ch_6_analytical_review_intell.ipynb`
+1. Design of Audit Programs - `ch_7_design_of_audit.ipynb`
+1. Interim Compliance Tests - `ch_8_interim_compliance.ipynb`
+1. Substantive Tests - `ch_9_substantive.ipynb`
+1. Sarbanes-Oxley Engagements - `ch_10_SOX.ipynb`
+1. Blockchains, Cybercrime and Forensics - `ch_11_block_fraud.ipynb`
+1. Special Engagements: Forecasts and Valuation - `ch_12_special.ipynb`
+1. Simulated Transactions for Auditing Service Organizations - `ch_13_simulation.ipynb`
 
 
 

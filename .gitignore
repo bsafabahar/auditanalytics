@@ -75,19 +75,11 @@ venv.bak/
 *.swo
 *~
 
-# R-specific files (from original project)
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-*.Rproj
-*.Rcheck/
-*.tar.gz
-
-# macOS
+# OS
 .DS_Store
-
-# Windows
 Thumbs.db
-ehthumbs.db
-Desktop.ini
+
+# R-specific files (keeping for reference during migration)
+.Rhistory
+.Rproj.user/
+*.Rproj
