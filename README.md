@@ -1,6 +1,29 @@
-## Audit Analytics: Data Science for the Accounting Profession (Python Edition)
+# Audit Analytics: Data Science for the Accounting Profession
 
-Python implementation of data science tools to plan, implement, and render an audit opinion that is legally and statistically defensible. Based on the book "Audit Analytics" by J. Christopher Westland
+## 🐍 Python Edition Now Available!
+
+**This repository has been converted to a Python package!** The complete functionality is now available in Python with all the power of modern data science libraries.
+
+👉 **[See README_PYTHON.md for Python installation and usage](README_PYTHON.md)**
+
+### Quick Start (Python)
+
+```bash
+# Install the package
+git clone https://github.com/bsafabahar/auditanalytics.git
+cd auditanalytics
+pip install -e .
+
+# Use in Python
+import auditanalytics as aa
+sample_size = aa.core.discovery_sample_size(0.95, 0.05)
+```
+
+---
+
+## Original R Package Information
+
+Originally developed using R and RStudio software to plan, implement, and render an audit opinion that is legally and statistically defensible
 
 ![Audit Analytics](https://images-na.ssl-images-amazon.com/images/I/41SRfppKIyL._SX328_BO1,204,203,200_.jpg)
 
@@ -39,34 +62,38 @@ To install the package:
 git clone https://github.com/bsafabahar/auditanalytics.git
 cd auditanalytics
 
-# Create a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+The package contains a collection of data sets used in the book, now located in the `/data` directory. Both R and Python versions can use these datasets.
 
-# Install the package and dependencies
-pip install -e .
-
-# Or install from requirements.txt
-pip install -r requirements.txt
-```
-
-## Usage
-
-After installation, you can use the package in your Python code:
-
+**Python usage:**
 ```python
-import pandas as pd
-from auditanalytics import utils
-
-# Load data from the package
-data = pd.read_csv(utils.get_data_path('ch_2_yahoo_fin.csv'))
-
-# Or start with the Jupyter notebooks
-# Open notebooks/sample_sizes_p103.ipynb in Jupyter
+import auditanalytics as aa
+data = aa.data.load_data('random_data.csv')
 ```
 
-## Chapters & Jupyter Notebooks
-_(You can find the converted Jupyter notebooks for each chapter in the `notebooks/` directory. These provide Python implementations of the audit analytics procedures described in the book.)_
+**R usage (original):**
+```r
+devtools::install_github("westland/auditanalytics")
+```
+
+## Original R Notebooks and Code
+
+The original R/Quarto code files are preserved in the `R-code files in Quarto/` directory for reference. The Python package provides equivalent functionality with these conversions:
+
+- R functions → Python functions with type hints
+- dplyr → pandas
+- ggplot2 → matplotlib + seaborn
+- Statistical packages → scipy + statsmodels
+
+## Chapters & Notebooks (Python)
+
+**Python Jupyter Notebooks** are available in the `/notebooks` directory:
+- Chapter 2: Metrics and Estimates ([ch2_metrics_estimates.ipynb](notebooks/ch2_metrics_estimates.ipynb))
+- Chapter 4: Sample Sizes for Budgeting ([ch4_sample_sizes.ipynb](notebooks/ch4_sample_sizes.ipynb))
+- More notebooks coming soon...
+
+### Original R Notebooks
+_(Original R code files in .qmd format - kept for reference)_
+_(You can download the R code for each of the "Audit Analytics" chapters by clicking on the chapter link and running the downloaded .Rmd file in R Studio)_
 
 - Preface and Frontmatter
 - Foreword by Erik Brynjolfsson
